@@ -26,7 +26,7 @@ bool Project::askDim()
     return false;
 }
 
-void Project::process1D()
+bool Project::process1D()
 {
     int n1;
     int n2;
@@ -39,7 +39,7 @@ void Project::process1D()
     cin >> n2;
 
     cout << "----------------------------------------" << endl;
-    cout << "Enter ELEMENTS of first 1D dataset: ";
+    cout << "Enter ELEMENTS of first 1D dataset (space separated or newline separated): ";
 
     vector<double> d1;
     double elem;
@@ -47,10 +47,9 @@ void Project::process1D()
         cin >> elem;
         d1.push_back(elem);
     }
-    cout << endl;
 
     cout << "----------------------------------------" << endl;
-    cout << "Enter ELEMENTS of second 1D dataset: ";
+    cout << "Enter ELEMENTS of second 1D dataset (space separated or newline separated): ";
 
     vector<double> d2;
     for (int i = 0; i < n2; i++) {
@@ -89,9 +88,11 @@ void Project::process1D()
     }
 
     cout << endl << "----------------------------------------" << endl;
+
+    return false;
 }
 
-void Project::process2D()
+bool Project::process2D()
 {
     int n1;
     int m1;
@@ -100,20 +101,25 @@ void Project::process2D()
     int m2;
 
     cout << "----------------------------------------" << endl;
-    cout << "Enter NO. OF ROWS of first 1D dataset: ";
+    cout << "Enter NO. OF ROWS of first 2D dataset: ";
     cin >> n1;
 
-    cout << "Enter NO. OF COLUMNS of first 1D dataset: ";
+    cout << "Enter NO. OF COLUMNS of first 2D dataset: ";
     cin >> m1;
 
-    cout << "Enter NO. OF ROWS of second 1D dataset: ";
+    cout << "Enter NO. OF ROWS of second 2D dataset (should be less than rows of first dataset): ";
     cin >> n2;
 
-    cout << "Enter NO. OF COLUMNS of second 1D dataset: ";
+    cout << "Enter NO. OF COLUMNS of second 2D dataset (should be less than cols of first dataset): ";
     cin >> m2;
 
+    if (n2 > n1 || m2 > m1) {
+        cout << "Either row or column of second 2D should be less than rows/cols of first 2D dataset" << endl;
+        return true;
+    }
+
     cout << "----------------------------------------" << endl;
-    cout << "Enter ELEMENTS of first 1D dataset: ";
+    cout << "Enter ELEMENTS of first 2D dataset: ";
 
     vector<vector<double>> d1;
     d1.resize(n1);
@@ -129,7 +135,7 @@ void Project::process2D()
     cout << endl;
 
     cout << "----------------------------------------" << endl;
-    cout << "Enter ELEMENTS of second 1D dataset: ";
+    cout << "Enter ELEMENTS of second 2D dataset: ";
 
     vector<vector<double>> d2;
     d2.resize(n2);
@@ -221,17 +227,17 @@ void Project::process2D()
         }
     }
     cout << endl << "----------------------------------------" << endl;
+
+    return false;
 }
 
 void Project::run(bool &flag)
 {
     if (askDim()) {
         if (dim) {
-            process1D();
-            flag = false;
+            flag = process1D();
         } else {
-            process2D();
-            flag = false;
+            flag = process2D();
         }
     }
 }

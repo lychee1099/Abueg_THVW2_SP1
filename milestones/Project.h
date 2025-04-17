@@ -7,8 +7,8 @@ private:
     bool dim;
 
     bool askDim();
-    void process1D();
-    void process2D();
+    bool process1D();
+    bool process2D();
 
 public:
     void run(bool& flag);
