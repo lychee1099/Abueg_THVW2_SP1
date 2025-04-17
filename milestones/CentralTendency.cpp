@@ -21,9 +21,9 @@ struct Data_2D {
     int n_rows;
 };
 
-//priv
+// PRIVATE METHODS
 
-// Getting mean for 1D datasets
+// Get mean for 1D datasets
 // Sum whole dataset then divide by its size
 void CentralTendency::mean_1D()
 {
@@ -44,7 +44,8 @@ void CentralTendency::mean_1D()
     }
 }
 
-// 
+// Get median for 1D datasets
+// Get the middle element of the sorted dataset
 void CentralTendency::median_1D()
 {
     int mid_index;
@@ -72,14 +73,10 @@ void CentralTendency::median_1D()
     }
 }
 
-// done
+// Get mode of 1D dataset
+// Count no. of each element then put into vector if it is the greatest
 void CentralTendency::mode_1D()
 {
-    // if there is already a mode
-    if (!dataset_1_1D->mode.empty() || !dataset_2_1D->mode.empty()) {
-        return;
-    }
-
     // acts like a queue
     vector<double> possible_modes;
     int greatest = 0;
@@ -90,9 +87,13 @@ void CentralTendency::mode_1D()
     if (dataset_1_1D->size != 0) {
         compare_with = dataset_1_1D->dataset[0];
         for (int i = 1; i < dataset_1_1D->size + 1; i++) {
+            // Since dataset is sorted, same elements are placed together
+            // So, we stop counting if the current element is not the same anymore
+            // OR if it is past the last element (to check the last element)
             if (dataset_1_1D->dataset[i] != compare_with || i >= dataset_1_1D->size) {
                 if (count > greatest) {
                     greatest = count;
+
                     possible_modes.clear();
                     possible_modes.push_back(compare_with); 
                 } else if (count == greatest) {
@@ -110,7 +111,6 @@ void CentralTendency::mode_1D()
         dataset_1_1D->mode = possible_modes;
     }
     
-    //-------
     possible_modes.clear();
     greatest = 0;
 
@@ -139,86 +139,83 @@ void CentralTendency::mode_1D()
     }
 }
 
+// Get mean of 2D datasets
+// For mean of whole dataset, you treat the flattened dataset as a 1D dataset and use mean func
+// For mean of each row, treat each row as a 1D dataset and use the mean func
 void CentralTendency::mean_2D()
 {
-    if (dataset_1_2D->flattened.mean == 0 || dataset_2_2D->flattened.mean == 0) {
-        // mean of whole dataset
-        CentralTendency whole(dataset_1_2D->flattened.dataset, dataset_2_2D->flattened.dataset);
-        dataset_1_2D->flattened.mean = whole.mean(1);
-        dataset_2_2D->flattened.mean = whole.mean(2);
-    }
+    // mean of whole dataset
+    CentralTendency whole(dataset_1_2D->flattened.dataset, dataset_2_2D->flattened.dataset);
+    dataset_1_2D->flattened.mean = whole.mean(1);
+    dataset_2_2D->flattened.mean = whole.mean(2);
 
     // mean of each row
-    vector<double> empty = {};
+    // two different loops since dataset 1 has lesser dimensions
+    // since a CentralTendency for 1D datasets requires two datasets,
+    // we define the second as an empty dataset
     for (int i = 0; i < dataset_1_2D->n_rows; i++) {
-        if (dataset_1_2D->rows[i].mean == 0) {
-            CentralTendency each_row(dataset_1_2D->rows[i].dataset, empty);
-            dataset_1_2D->rows[i].mean = each_row.mean(1);
-        }
+        CentralTendency each_row(dataset_1_2D->rows[i].dataset, {});
+        dataset_1_2D->rows[i].mean = each_row.mean(1);
     }
 
     for (int i = 0; i < dataset_2_2D->n_rows; i++) {
-        if (dataset_2_2D->rows[i].mean == 0) {
-            CentralTendency each_row(dataset_2_2D->rows[i].dataset, empty);
-            dataset_2_2D->rows[i].mean = each_row.mean(1);
-        }
+        CentralTendency each_row(dataset_2_2D->rows[i].dataset, {});
+        dataset_2_2D->rows[i].mean = each_row.mean(1);
     }
-
 }
 
+// Get median of 2D datasets
+// For median of whole dataset, you treat the flattened dataset as a 1D dataset and use median func
+// For median of each row, treat each row as a 1D dataset and use the median func
 void CentralTendency::median_2D()
 {
-    if (dataset_1_2D->flattened.median == 0 || dataset_2_2D->flattened.median == 0) {
-        // median of whole dataset
-        CentralTendency whole(dataset_1_2D->flattened.dataset, dataset_2_2D->flattened.dataset);
-        dataset_1_2D->flattened.median = whole.median(1);
-        dataset_2_2D->flattened.median = whole.median(2);
-    }
+    // median of whole dataset
+    CentralTendency whole(dataset_1_2D->flattened.dataset, dataset_2_2D->flattened.dataset);
+    dataset_1_2D->flattened.median = whole.median(1);
+    dataset_2_2D->flattened.median = whole.median(2);
 
     // median of each row
-    vector<double> empty = {};
+    // two different loops since dataset 1 has lesser dimensions
+    // since a CentralTendency for 1D datasets requires two datasets,
+    // we define the second as an empty dataset
     for (int i = 0; i < dataset_1_2D->n_rows; i++) {
-        if (dataset_1_2D->rows[i].median == 0) {
-            CentralTendency each_row(dataset_1_2D->rows[i].dataset, empty);
-            dataset_1_2D->rows[i].median = each_row.median(1);
-        }
+        CentralTendency each_row(dataset_1_2D->rows[i].dataset, {});
+        dataset_1_2D->rows[i].median = each_row.median(1);
     }
 
     for (int i = 0; i < dataset_2_2D->n_rows; i++) {
-        if (dataset_2_2D->rows[i].median == 0) {
-            CentralTendency each_row(dataset_2_2D->rows[i].dataset, empty);
-            dataset_2_2D->rows[i].median = each_row.median(1);
-        }
+        CentralTendency each_row(dataset_2_2D->rows[i].dataset, {});
+        dataset_2_2D->rows[i].median = each_row.median(1);
     }
 }
 
+// Get mode of 2D datasets
+// For mode of whole dataset, you treat the flattened dataset as a 1D dataset and use mode func
+// For mode of each row, treat each row as a 1D dataset and use the mode func
 void CentralTendency::mode_2D()
 {
-    if (dataset_1_2D->flattened.mode.empty() || dataset_2_2D->flattened.mode.empty() == 0) {
-        // mode of whole dataset
-        CentralTendency whole(dataset_1_2D->flattened.dataset, dataset_2_2D->flattened.dataset);
-        dataset_1_2D->flattened.mode = whole.mode(1);
-        dataset_2_2D->flattened.mode = whole.mode(2);
-    }
+    // mode of whole dataset
+    CentralTendency whole(dataset_1_2D->flattened.dataset, dataset_2_2D->flattened.dataset);
+    dataset_1_2D->flattened.mode = whole.mode(1);
+    dataset_2_2D->flattened.mode = whole.mode(2);
 
     // mode of each row
-    vector<double> empty = {};
+    // two different loops since dataset 1 has lesser dimensions
+    // since a CentralTendency for 1D datasets requires two datasets,
+    // we define the second as an empty dataset
     for (int i = 0; i < dataset_1_2D->n_rows; i++) {
-        if (dataset_1_2D->rows[i].mode.empty()) {
-            CentralTendency each_row(dataset_1_2D->rows[i].dataset, empty);
-            dataset_1_2D->rows[i].mode = each_row.mode(1);
-        }
+        CentralTendency each_row(dataset_1_2D->rows[i].dataset, {});
+        dataset_1_2D->rows[i].mode = each_row.mode(1);
     }
 
     for (int i = 0; i < dataset_2_2D->n_rows; i++) {
-        if (dataset_2_2D->rows[i].mode.empty()) {
-            CentralTendency each_row(dataset_2_2D->rows[i].dataset, empty);
-            dataset_2_2D->rows[i].mode = each_row.mode(1);
-        }
+        CentralTendency each_row(dataset_2_2D->rows[i].dataset, {});
+        dataset_2_2D->rows[i].mode = each_row.mode(1);
     }
 }
 
-// pub
+// PUBLIC METHODS
+
 CentralTendency::CentralTendency(vector<double> ds1, vector<double> ds2)
 {
     // sort
@@ -245,9 +242,6 @@ CentralTendency::CentralTendency(vector<vector<double>>& ds1, vector<vector<doub
 {
     dataset_1_2D = new Data_2D;
     dataset_2_2D = new Data_2D;
-
-    // dataset_1_2D->dataset_2D = ds1;
-    // dataset_2_2D->dataset_2D = ds2;
 
     dataset_1_2D->n_rows = ds1.size();
     dataset_2_2D->n_rows = ds2.size();
@@ -285,11 +279,15 @@ CentralTendency::CentralTendency(vector<vector<double>>& ds1, vector<vector<doub
     dataset_1_2D->rows.resize(dataset_1_2D->n_rows);
     for (int i = 0; i < dataset_1_2D->n_rows; i++) {
         for (int j = 0; j < ds1[i].size(); j++) {
+            int index = 0;
             if (i > 0) {
-                dataset_1_2D->rows[i].dataset.push_back(flat1[j + i * ds1[i-1].size()]);    
+                // adding an offset to access the ith row of the flattened array
+                index = j + i * ds1[i-1].size();
             } else {
-                dataset_1_2D->rows[i].dataset.push_back(flat1[j]);
+                index = j;
             }
+
+            dataset_1_2D->rows[i].dataset.push_back(flat1[index]);    
         }
         dataset_1_2D->rows[i].size = ds1[i].size();
     }
@@ -297,11 +295,14 @@ CentralTendency::CentralTendency(vector<vector<double>>& ds1, vector<vector<doub
     dataset_2_2D->rows.resize(dataset_2_2D->n_rows);
     for (int i = 0; i < dataset_2_2D->n_rows; i++) {
         for (int j = 0; j < ds2[i].size(); j++) {
+            int index = 0;
             if (i > 0) {
-                dataset_2_2D->rows[i].dataset.push_back(flat2[j + i * ds1[i-1].size()]);    
+                index = j + i * ds1[i-1].size();
             } else {
-                dataset_2_2D->rows[i].dataset.push_back(flat2[j]);
+                index = j;
             }
+
+            dataset_2_2D->rows[i].dataset.push_back(flat2[index]);    
         }
         dataset_2_2D->rows[i].size = ds2[i].size();
     }
@@ -312,6 +313,7 @@ CentralTendency::CentralTendency(vector<vector<double>>& ds1, vector<vector<doub
 
 CentralTendency::~CentralTendency()
 {
+    // wow no memory leaks?!?!
     if (dataset_1_1D && dataset_2_1D) {
         delete dataset_1_1D;
         delete dataset_2_1D;
@@ -329,10 +331,10 @@ CentralTendency::~CentralTendency()
     }
 }
 
+// public mean method for 1D datasets
 double CentralTendency::mean(int n)
 {
     if (dataset_1_1D && dataset_2_1D) {
-
         mean_1D();
 
         if (n == 1) {
@@ -345,6 +347,7 @@ double CentralTendency::mean(int n)
     return 0.0;
 }
 
+// public mean method for 2D datasets
 double CentralTendency::mean(int n, bool whole, int n_row)
 {
     if (!(dataset_1_2D && dataset_2_2D)) {
@@ -352,6 +355,7 @@ double CentralTendency::mean(int n, bool whole, int n_row)
     }
 
     mean_2D();
+
     if (n == 1) {
         if (whole) {
             return dataset_1_2D->flattened.mean;
@@ -367,6 +371,7 @@ double CentralTendency::mean(int n, bool whole, int n_row)
     }
 }
 
+// public median method for 1D datasets
 double CentralTendency::median(int n)
 {
     if (dataset_1_1D && dataset_2_1D) {
@@ -381,6 +386,7 @@ double CentralTendency::median(int n)
     return 0.0;
 }
 
+// public median method for 2D datasets
 double CentralTendency::median(int n, bool whole, int n_row)
 {
     if (!(dataset_1_2D && dataset_2_2D)) {
@@ -403,6 +409,7 @@ double CentralTendency::median(int n, bool whole, int n_row)
     }
 }
 
+// public mode method for 1D datasets
 vector<double> CentralTendency::mode(int n)
 {
     if (dataset_1_1D && dataset_2_1D) {
@@ -417,6 +424,7 @@ vector<double> CentralTendency::mode(int n)
     return vector<double>();
 }
 
+// public mode method for 2D datasets
 vector<double> CentralTendency::mode(int n, bool whole, int n_row)
 {
     if (!(dataset_1_2D && dataset_2_2D)) {
