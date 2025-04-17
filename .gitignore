@@ -172,3 +172,26 @@ out/build/GCC 14.2.0 x86_64-w64-mingw32 (ucrt64)/utils/CMakeFiles/utils.dir/flag
 out/build/GCC 14.2.0 x86_64-w64-mingw32 (ucrt64)/utils/CMakeFiles/utils.dir/includes_CXX.rsp
 out/build/GCC 14.2.0 x86_64-w64-mingw32 (ucrt64)/utils/CMakeFiles/utils.dir/link.txt
 out/build/GCC 14.2.0 x86_64-w64-mingw32 (ucrt64)/utils/CMakeFiles/utils.dir/progress.make
+out/build/GCC 14.2.0 x86_64-w64-mingw32 (ucrt64)/sp1.exe
+out/build/GCC 14.2.0 x86_64-w64-mingw32 (ucrt64)/CMakeFiles/sp1.dir/compiler_depend.internal
+out/build/GCC 14.2.0 x86_64-w64-mingw32 (ucrt64)/CMakeFiles/sp1.dir/main.cpp.obj
+out/build/GCC 14.2.0 x86_64-w64-mingw32 (ucrt64)/CMakeFiles/sp1.dir/main.cpp.obj.d
+out/build/GCC 14.2.0 x86_64-w64-mingw32 (ucrt64)/CMakeFiles/sp1.dir/objects.a
+out/build/GCC 14.2.0 x86_64-w64-mingw32 (ucrt64)/milestones/libmilestones.a
+out/build/GCC 14.2.0 x86_64-w64-mingw32 (ucrt64)/milestones/CMakeFiles/milestones.dir/CentralTendency.cpp.obj
+out/build/GCC 14.2.0 x86_64-w64-mingw32 (ucrt64)/milestones/CMakeFiles/milestones.dir/CentralTendency.cpp.obj.d
+out/build/GCC 14.2.0 x86_64-w64-mingw32 (ucrt64)/milestones/CMakeFiles/milestones.dir/compiler_depend.internal
+out/build/GCC 14.2.0 x86_64-w64-mingw32 (ucrt64)/milestones/CMakeFiles/milestones.dir/CrossCorr.cpp.obj
+out/build/GCC 14.2.0 x86_64-w64-mingw32 (ucrt64)/milestones/CMakeFiles/milestones.dir/CrossCorr.cpp.obj.d
+out/build/GCC 14.2.0 x86_64-w64-mingw32 (ucrt64)/milestones/CMakeFiles/milestones.dir/LinearConv.cpp.obj
+out/build/GCC 14.2.0 x86_64-w64-mingw32 (ucrt64)/milestones/CMakeFiles/milestones.dir/LinearConv.cpp.obj.d
+out/build/GCC 14.2.0 x86_64-w64-mingw32 (ucrt64)/milestones/CMakeFiles/milestones.dir/Project.cpp.obj
+out/build/GCC 14.2.0 x86_64-w64-mingw32 (ucrt64)/milestones/CMakeFiles/milestones.dir/Project.cpp.obj.d
+out/build/GCC 14.2.0 x86_64-w64-mingw32 (ucrt64)/utils/libutils.a
+out/build/GCC 14.2.0 x86_64-w64-mingw32 (ucrt64)/utils/CMakeFiles/utils.dir/compiler_depend.internal
+out/build/GCC 14.2.0 x86_64-w64-mingw32 (ucrt64)/utils/CMakeFiles/utils.dir/DLL.cpp.obj
+out/build/GCC 14.2.0 x86_64-w64-mingw32 (ucrt64)/utils/CMakeFiles/utils.dir/DLL.cpp.obj.d
+out/build/GCC 14.2.0 x86_64-w64-mingw32 (ucrt64)/utils/CMakeFiles/utils.dir/Sort.cpp.obj
+out/build/GCC 14.2.0 x86_64-w64-mingw32 (ucrt64)/utils/CMakeFiles/utils.dir/Sort.cpp.obj.d
+a.exe
+a.exe
