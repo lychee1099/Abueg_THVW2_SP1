@@ -82,6 +82,7 @@ void Project::process1D()
     cout << "Convoluted elements: ";
 
     LinearConv lc(d1, d2);
+    lc.doLinearConv();
     vector<double> conv = lc.getConvolutedVector();
     for (int i = 0; i < conv.size(); i++) {
         cout << conv[i] << " ";
@@ -211,6 +212,7 @@ void Project::process2D()
     cout << "Cross Corr elements: ";
 
     CrossCorr cc(d1, d2);
+    cc.doCrossCorr();
     vector<vector<double>> corr = cc.getCorr();
 
     for (int i = 0; i < corr.size(); i++) {

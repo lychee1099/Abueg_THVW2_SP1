@@ -179,7 +179,7 @@ void CentralTendency::median_2D()
     // since a CentralTendency for 1D datasets requires two datasets,
     // we define the second as an empty dataset
     for (int i = 0; i < dataset_1_2D->n_rows; i++) {
-        CentralTendency each_row(dataset_1_2D->rows[i].dataset, {});
+        CentralTendency each_row(dataset_1_2D->rows[i].dataset, {});    
         dataset_1_2D->rows[i].median = each_row.median(1);
     }
 
@@ -297,7 +297,7 @@ CentralTendency::CentralTendency(vector<vector<double>>& ds1, vector<vector<doub
         for (int j = 0; j < ds2[i].size(); j++) {
             int index = 0;
             if (i > 0) {
-                index = j + i * ds1[i-1].size();
+                index = j + i * ds2[i-1].size();
             } else {
                 index = j;
             }

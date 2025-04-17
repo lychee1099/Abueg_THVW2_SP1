@@ -13,10 +13,14 @@ class LinearConv {
 private:
     vector<double> convoluted;
 
+    vector<double> dataset_1;
+    vector<double> dataset_2;
 public:
     LinearConv(vector<double> ds1, vector<double> ds2);
     ~LinearConv();
 
+    void doLinearConv();
+    void setDatasets(vector<double> ds1, vector<double> ds2);
     const vector<double>& getConvolutedVector();
 };
 
