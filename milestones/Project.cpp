@@ -78,17 +78,21 @@ bool Project::process1D()
 
     cout << endl << "----------------------------------------" << endl;
 
-    cout << "Convoluted elements: ";
+    cout << "Linear Convolution: ";
 
     LinearConv lc(d1, d2);
     lc.doLinearConv();
     vector<double> conv = lc.getConvolutedVector();
+    cout << "[";
     for (int i = 0; i < conv.size(); i++) {
-        cout << conv[i] << " ";
+        cout << conv[i];
+        if (i == conv.size() - 1) { continue; }
+        cout << ", ";
     }
+    cout << "]";
 
     cout << endl << "----------------------------------------" << endl;
-    cout << "'Cross Corr' elements: ";
+    cout << "'Cross Corr': ";
     CrossCorr cc;
     if (d1.size() >= d2.size()) {
         cc = CrossCorr({d1}, {d2});
@@ -99,11 +103,21 @@ bool Project::process1D()
     cc.doCrossCorr();
     vector<vector<double>> corr = cc.getCorr();
 
+    cout << "[ ";
     for (int i = 0; i < corr.size(); i++) {
+        cout << "[";
         for (int j = 0; j < corr[i].size(); j++) {
-            cout << corr[i][j] << " ";
+            cout << corr[i][j];
+            if (j == corr[i].size() - 1) { continue; }
+            cout << ", ";
         }
+
+        cout << "]"; 
+        if (i == corr.size() - 1) { continue; }
+        cout << "," << endl; 
     }
+    cout << " ]";
+    
     cout << endl << "----------------------------------------" << endl;
 
     return false;
@@ -232,17 +246,27 @@ bool Project::process2D()
     }
 
     cout << endl << "----------------------------------------" << endl;
-    cout << "Cross Corr elements: ";
+    cout << "Cross Corr: " << endl;
 
     CrossCorr cc(d1, d2);
     cc.doCrossCorr();
     vector<vector<double>> corr = cc.getCorr();
 
+    cout << "[ ";
     for (int i = 0; i < corr.size(); i++) {
+        cout << "[";
         for (int j = 0; j < corr[i].size(); j++) {
-            cout << corr[i][j] << " ";
+            cout << corr[i][j];
+            if (j == corr[i].size() - 1) { continue; }
+            cout << ", ";
         }
+
+        cout << "]"; 
+        if (i == corr.size() - 1) { continue; }
+        cout << "," << endl; 
     }
+    cout << " ]";
+
     cout << endl << "----------------------------------------" << endl;
 
     return false;
