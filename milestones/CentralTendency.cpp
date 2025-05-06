@@ -246,6 +246,17 @@ CentralTendency::CentralTendency(vector<vector<double>>& ds1, vector<vector<doub
     dataset_1_2D->n_rows = ds1.size();
     dataset_2_2D->n_rows = ds2.size();
 
+    // get each raw row
+    dataset_1_2D->rows.resize(dataset_1_2D->n_rows);
+    for (int i = 0; i < dataset_1_2D->n_rows; i++) {
+        dataset_1_2D->rows[i].dataset = ds1[i];
+    }
+
+    dataset_2_2D->rows.resize(dataset_2_2D->n_rows);
+    for (int i = 0; i < dataset_2_2D->n_rows; i++) {
+        dataset_2_2D->rows[i].dataset = ds2[i];
+    }
+
     // flatten
     vector<double> flat1;
     for (int i = 0; i < dataset_1_2D->n_rows; i++) {
@@ -261,10 +272,7 @@ CentralTendency::CentralTendency(vector<vector<double>>& ds1, vector<vector<doub
         }
     }
 
-    // sort
-    // quicksort(&flat1.data()[0], &flat1.data()[flat1.size()-1]);
-    // quicksort(&flat2.data()[0], &flat2.data()[flat2.size()-1]);
-
+    // sort flattenned to prep for central tendency of whole dataset
     merge_sort(&flat1.data()[0], &flat1.data()[flat1.size()-1]);
     merge_sort(&flat2.data()[0], &flat2.data()[flat2.size()-1]);
 
@@ -274,38 +282,6 @@ CentralTendency::CentralTendency(vector<vector<double>>& ds1, vector<vector<doub
 
     dataset_2_2D->flattened.dataset = flat2;
     dataset_2_2D->flattened.size = flat2.size();
-
-    // put flattened back to 2d arrays
-    dataset_1_2D->rows.resize(dataset_1_2D->n_rows);
-    for (int i = 0; i < dataset_1_2D->n_rows; i++) {
-        for (int j = 0; j < ds1[i].size(); j++) {
-            int index = 0;
-            if (i > 0) {
-                // adding an offset to access the ith row of the flattened array
-                index = j + i * ds1[i-1].size();
-            } else {
-                index = j;
-            }
-
-            dataset_1_2D->rows[i].dataset.push_back(flat1[index]);    
-        }
-        dataset_1_2D->rows[i].size = ds1[i].size();
-    }
-
-    dataset_2_2D->rows.resize(dataset_2_2D->n_rows);
-    for (int i = 0; i < dataset_2_2D->n_rows; i++) {
-        for (int j = 0; j < ds2[i].size(); j++) {
-            int index = 0;
-            if (i > 0) {
-                index = j + i * ds2[i-1].size();
-            } else {
-                index = j;
-            }
-
-            dataset_2_2D->rows[i].dataset.push_back(flat2[index]);    
-        }
-        dataset_2_2D->rows[i].size = ds2[i].size();
-    }
 
     dataset_1_1D = nullptr;
     dataset_2_1D = nullptr;
