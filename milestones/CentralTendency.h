@@ -26,7 +26,7 @@ private:
 
 public:
     CentralTendency(vector<double> ds1, vector<double> ds2);
-    CentralTendency(vector<vector<double>>& ds1, vector<vector<double>>& ds2);
+    CentralTendency(vector<vector<double>> ds1, vector<vector<double>> ds2);
     ~CentralTendency();
 
     double mean(int n);

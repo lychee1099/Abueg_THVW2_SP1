@@ -238,7 +238,7 @@ CentralTendency::CentralTendency(vector<double> ds1, vector<double> ds2)
     dataset_2_2D = nullptr;
 }
 
-CentralTendency::CentralTendency(vector<vector<double>>& ds1, vector<vector<double>>& ds2)
+CentralTendency::CentralTendency(vector<vector<double>> ds1, vector<vector<double>> ds2)
 {
     dataset_1_2D = new Data_2D;
     dataset_2_2D = new Data_2D;

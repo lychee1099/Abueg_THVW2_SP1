@@ -107,19 +107,19 @@ bool Project::process2D()
     cout << "Enter NO. OF COLUMNS of first 2D dataset: ";
     cin >> m1;
 
-    cout << "Enter NO. OF ROWS of second 2D dataset (should be less than rows of first dataset): ";
+    cout << "Enter NO. OF ROWS of second 2D dataset (should be less than or equal to the rows of first dataset): ";
     cin >> n2;
 
-    cout << "Enter NO. OF COLUMNS of second 2D dataset (should be less than cols of first dataset): ";
+    cout << "Enter NO. OF COLUMNS of second 2D dataset (should be less than or equal to the cols of first dataset): ";
     cin >> m2;
 
     if (n2 > n1 || m2 > m1) {
-        cout << "Either row or column of second 2D should be less than rows/cols of first 2D dataset" << endl;
+        cout << "Either row or column of second 2D should be less than or equal to the rows/cols of first 2D dataset" << endl;
         return true;
     }
 
     cout << "----------------------------------------" << endl;
-    cout << "Enter ELEMENTS of first 2D dataset: ";
+    cout << "Enter ELEMENTS of first 2D dataset (space separated or newline separated): ";
 
     vector<vector<double>> d1;
     d1.resize(n1);
@@ -135,7 +135,7 @@ bool Project::process2D()
     cout << endl;
 
     cout << "----------------------------------------" << endl;
-    cout << "Enter ELEMENTS of second 2D dataset: ";
+    cout << "Enter ELEMENTS of second 2D dataset (space separated or newline separated): ";
 
     vector<vector<double>> d2;
     d2.resize(n2);
