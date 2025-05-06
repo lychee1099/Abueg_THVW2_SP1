@@ -38,10 +38,10 @@ void CrossCorr::doCrossCorr()
     for (int i = 0; i < n_corr_rows; i++) {
         // needs to preserve the original DLL for the next rows
         DLL list2_flat_temp(list2_flat);
-        sum = 0.0;
 
         corr[i].resize(n_corr_cols);
         for (int m = 0; m < n_corr_cols; m++) {
+            sum = 0.0;
             // multiply the elements of the flattened lists and accumulate
             for (int j = 0; j < list1_flat.getSize(); j++) {
                 sum += list1_flat[j] * list2_flat_temp[j];

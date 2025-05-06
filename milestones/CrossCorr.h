@@ -13,6 +13,7 @@ private:
     vector<vector<double>> dataset_2;
 public:
     CrossCorr(vector<vector<double>> ds1, vector<vector<double>> ds2);
+    CrossCorr() {}
 
     void doCrossCorr();
     void setDatasets(vector<vector<double>> ds1, vector<vector<double>> ds2);

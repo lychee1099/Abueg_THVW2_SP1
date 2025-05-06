@@ -88,6 +88,23 @@ bool Project::process1D()
     }
 
     cout << endl << "----------------------------------------" << endl;
+    cout << "'Cross Corr' elements: ";
+    CrossCorr cc;
+    if (d1.size() >= d2.size()) {
+        cc = CrossCorr({d1}, {d2});
+    } else {
+        cc = CrossCorr({d2}, {d1});
+    }
+    
+    cc.doCrossCorr();
+    vector<vector<double>> corr = cc.getCorr();
+
+    for (int i = 0; i < corr.size(); i++) {
+        for (int j = 0; j < corr[i].size(); j++) {
+            cout << corr[i][j] << " ";
+        }
+    }
+    cout << endl << "----------------------------------------" << endl;
 
     return false;
 }
