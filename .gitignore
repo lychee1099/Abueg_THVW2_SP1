@@ -201,7 +201,6 @@ test.cpp
 bin/cmake_install.cmake
 bin/CMakeCache.txt
 bin/Makefile
-bin/sp1.exe
 bin/.cmake/api/v1/query/client-vscode/query.json
 bin/.cmake/api/v1/reply/cache-v2-59135c45b6dd8c19e015.json
 bin/.cmake/api/v1/reply/cmakeFiles-v1-7899ad702b5c16d76388.json

@@ -205,19 +205,19 @@ bool Project::process2D()
     cout << "EACH ROW OF D1" << endl;
     cout << "D1 mean: ";
     for (int i = 0; i < d1.size(); i++) {
-        cout << ct.mean(1, false, i) << " ";
+        cout << ct.mean(1, false, i) << ", ";
     }
     
     cout << "\nD1 median: ";
     for (int i = 0; i < d1.size(); i++) {
-        cout << ct.median(1, false, i) << " ";
+        cout << ct.median(1, false, i) << ", ";
     }
     
     cout<< "\nD1 mode(s): ";
     for (int i = 0; i < d1.size(); i++) {
          modes = ct.mode(1, false, i);
          for (int i = 0; i < modes.size(); i++) {
-            cout <<modes[i] << " ";
+            cout <<modes[i] << ", ";
         }
         cout << "\n";
     }
@@ -228,19 +228,19 @@ bool Project::process2D()
     cout << "EACH ROW OF D2" << endl;
     cout << "D2 mean: ";
     for (int i = 0; i < d2.size(); i++) {
-        cout << ct.mean(2, false, i) << " ";
+        cout << ct.mean(2, false, i) << ", ";
     }
     
     cout << "\nD2 median: ";
     for (int i = 0; i < d2.size(); i++) {
-        cout << ct.median(2, false, i) << " ";
+        cout << ct.median(2, false, i) << ", ";
     }
     
     cout<< "\nD2 mode(s): ";
     for (int i = 0; i < d2.size(); i++) {
          modes = ct.mode(2, false, i);
          for (int i = 0; i < modes.size(); i++) {
-            cout <<modes[i] << " ";
+            cout <<modes[i] << ", ";
         }
         cout << "\n";
     }
