@@ -4,3 +4,5 @@ cmake proj using vscode (extension)
 -just press build or use the cmake tab to build
 
 or use the precompiled exe in bin
+
+also check the pdf!
